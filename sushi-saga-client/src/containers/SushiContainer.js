@@ -12,6 +12,7 @@ class SushiContainer extends React.Component {
         sushi={sushi}
         eat={this.props.eatSushi}
         charge={this.props.chargeMoney}
+        money={this.props.money}
         />
     ))
 

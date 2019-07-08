@@ -59,8 +59,14 @@ handleShowMore = () => {
 
   handleCharge = (sushiObj) => {
     console.log(`I cost $${sushiObj.price}`);
-    let moneyLeft = this.state.money - sushiObj.price
-    this.setState({money: moneyLeft})
+    let money = this.state.money
+
+    if (money >= sushiObj.price) {
+      let moneyLeft = this.state.money - sushiObj.price
+      this.setState({money: moneyLeft})
+    }
+
+
   }
 
   render() {
@@ -73,6 +79,7 @@ handleShowMore = () => {
           eatSushi={this.handleEatSushi}
           showMore={this.handleShowMore}
           chargeMoney={this.handleCharge}
+          money={this.state.money}
           />
 
         <Table

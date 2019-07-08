@@ -7,14 +7,19 @@ class Sushi extends React.Component {
   }
 
   handleEatClick = (event) => {
-    this.setState({eaten: true})
-    this.props.eat(this.props.sushi)
-    this.props.charge(this.props.sushi)
+
+    if (this.props.money>= this.props.sushi.price) {
+      this.setState({eaten: true})
+      this.props.eat(this.props.sushi)
+      this.props.charge(this.props.sushi)
+    } else {
+      alert("You don't have enough money")
+    }
+
   }
 
-
-
   render() {
+    console.log(this.props);
     let imgObj = {eaten: false}
     if (this.state.eaten) {
       imgObj.eaten = true
