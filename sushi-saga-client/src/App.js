@@ -69,6 +69,17 @@ handleShowMore = () => {
 
   }
 
+
+//-------------------ADD MONEY-----------------
+
+  handleDeposit = (addObj) => {
+    // console.log("heyyy");
+    let currentMoney = this.state.money
+    let addMoney = parseInt(addObj)
+    let difference = currentMoney + addMoney
+    this.setState({money: difference})
+  }
+
   render() {
     // console.log(this.state.sushiList);
 
@@ -84,6 +95,7 @@ handleShowMore = () => {
 
         <Table
           money={this.state.money}
+          deposit={this.handleDeposit}
           />
       </div>
     );
