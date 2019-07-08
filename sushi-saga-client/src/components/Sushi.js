@@ -9,12 +9,9 @@ class Sushi extends React.Component {
   handleEatClick = (event) => {
     this.setState({eaten: true})
     this.props.eat(this.props.sushi)
+    this.props.charge(this.props.sushi)
   }
 
-  handleMoreClick = (event) => {
-    console.log(event.target);
-    this.props.eat(this.props.sushi)
-  }
 
 
   render() {

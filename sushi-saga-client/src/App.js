@@ -7,7 +7,7 @@ const API = "http://localhost:3000/sushis"
 let increment = 1
 class App extends Component {
 
-//--------------------------CREATE STATES
+//--------------------------CREATE STATES--------------
 
   state = {
     sushiList: [],
@@ -16,7 +16,7 @@ class App extends Component {
 
   }
 
-////----------FETCH SUSHI
+////----------FETCH SUSHI-----------------------------
   componentDidMount() {
     fetch(API)
     .then(res => res.json())
@@ -46,7 +46,6 @@ handleShowMore = () => {
 }
 
 
-
 //--------------EAT SUSHI AND REMOVE PICTURE
   handleEatSushi = (sushiObj) => {
     let name = sushiObj.name
@@ -55,6 +54,14 @@ handleShowMore = () => {
     console.log(sushiObj);
   }
 
+
+//----------------CHARGE FOR SUSHI-------
+
+  handleCharge = (sushiObj) => {
+    console.log(`I cost $${sushiObj.price}`);
+    let moneyLeft = this.state.money - sushiObj.price
+    this.setState({money: moneyLeft})
+  }
 
   render() {
     // console.log(this.state.sushiList);
@@ -65,6 +72,7 @@ handleShowMore = () => {
           sushis={this.state.currentSushi}
           eatSushi={this.handleEatSushi}
           showMore={this.handleShowMore}
+          chargeMoney={this.handleCharge}
           />
 
         <Table
