@@ -7,9 +7,7 @@ class Sushi extends React.Component {
   }
 
   handleEatClick = (event) => {
-    console.log(this.state.eaten);
     this.setState({eaten: true})
-    console.log(event.target);
     this.props.eat(this.props.sushi)
   }
 
@@ -31,6 +29,7 @@ class Sushi extends React.Component {
         {
           /* Tell me if this sushi has been eaten! */
           imgObj.eaten ?
+
           null :
 
             <img src={this.props.sushi.img_url} width="100%" />

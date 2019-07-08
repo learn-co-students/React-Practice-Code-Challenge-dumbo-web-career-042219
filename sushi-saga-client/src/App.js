@@ -4,7 +4,7 @@ import Table from './containers/Table';
 
 // Endpoint!
 const API = "http://localhost:3000/sushis"
-
+let increment = 1
 class App extends Component {
 
 //--------------------------CREATE STATES
@@ -12,7 +12,8 @@ class App extends Component {
   state = {
     sushiList: [],
     currentSushi: [],
-    money: 100
+    money: 100,
+
   }
 
 ////----------FETCH SUSHI
@@ -27,11 +28,31 @@ class App extends Component {
     })
   }
 
-  handleEatSushi = (sushiObj) => {
-    let allSushi = [...this.state.sushiList]
+//-------------SHOW MORE SUSHI----------
 
-    console.log(sushiObj.name);
-    // console.log(allSushi);
+handleShowMore = () => {
+
+  increment++
+  let currentSushi = [...this.state.currentSushi]
+  let lastSushi = currentSushi[3]
+
+  let allSushi = [...this.state.sushiList]
+  let index = allSushi.indexOf(lastSushi)
+
+  let four = allSushi.slice(0+increment,4+increment)
+  console.log(four);
+  this.setState({currentSushi: four})
+
+}
+
+
+
+//--------------EAT SUSHI AND REMOVE PICTURE
+  handleEatSushi = (sushiObj) => {
+    let name = sushiObj.name
+    let allSushi = [...this.state.sushiList]
+    let index = allSushi.indexOf(sushiObj)
+    console.log(sushiObj);
   }
 
 
@@ -43,7 +64,9 @@ class App extends Component {
         <SushiContainer
           sushis={this.state.currentSushi}
           eatSushi={this.handleEatSushi}
+          showMore={this.handleShowMore}
           />
+
         <Table
           money={this.state.money}
           />

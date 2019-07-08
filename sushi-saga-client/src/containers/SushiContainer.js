@@ -20,7 +20,7 @@ class SushiContainer extends React.Component {
         {
           sushis
         }
-        <MoreButton />
+        <MoreButton more={this.props.showMore} />
       </div>
     </Fragment>
   )
