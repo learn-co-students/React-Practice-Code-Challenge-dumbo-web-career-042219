@@ -1,32 +1,56 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 
-const Table = (props) => {
+class Table extends React.Component {
 
-  const renderPlates = (array) => {
-    return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }}/>
-    })
+  state = {
+    add: 0
+  }
+  handleChange = (event) => {
+    this.setState({add: event.target.value})
   }
 
-  return (
-    <Fragment>
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.deposit(this.state.add)
+  }
+  render() {
+
+    const renderPlates = (array) => {
+      return array.map((x, index) => {
+        return <div className="empty-plate" style={{
+            top: -7 * index
+          }}/>
+      })
+    }
+
+    return (<Fragment>
+
       <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
+        <form onSubmit= {this.handleSubmit}>
+          <input onChange={this.handleChange} value= {this.state.money} placeholder="Add money">
+          </input>
+        <input type="submit" value={"Add Money!"} />
+        </form>
+        You have: ${this.props.money}  remaining!
+
       </h1>
+
+
       <div className="table">
         <div className="stack">
           {
-            /* 
-               renderPlates takes an array 
+            /*
+               renderPlates takes an array
                and renders an empty plate
                for every element in the array
             */
             renderPlates([])
           }
         </div>
-      </div>
-    </Fragment>
-  )
-}
 
+
+      </div>
+    </Fragment>)
+  }
+}
 export default Table
